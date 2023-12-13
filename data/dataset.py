@@ -81,6 +81,7 @@ class ImageDataset(torch.utils.data.Dataset):
         data_infos = []
         folders = os.listdir(root)
         folders.sort() # sort by alphabet
+        print(root)
         print("[dataset] class number:", len(folders))
         for class_id, folder in enumerate(folders):
             files = os.listdir(root+folder)
