@@ -1,17 +1,17 @@
 project_name: FGVC-HERBS
 notes: 'no inverse'
 exp_name: basline
-use_wandb: True
-wandb_entity: poyung
+use_wandb: True 
+wandb_entity: mlfinal 
 train_root: ./nycu2023mlfinalproject/data/train/
 val_root: ./nycu2023mlfinalproject/data/val/
 data_size: 384
 num_workers: 2
-batch_size: 8
+batch_size: 4 
 model_name: swin-t
-pretrained: ~
+pretrained: ~ 
 optimizer: SGD
-max_lr: 0.0005
+max_lr: 0.00045
 wdecay: 0.0003
 max_epochs: 80
 warmup_batchs: 1500
@@ -33,5 +33,7 @@ lambda_n: 5.0
 lambda_c: 1.0
 update_freq: 4
 log_freq: 100
-eval_freq: 10
+eval_freq: 5
 temperature: 64
+
+

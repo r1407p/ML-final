@@ -15,6 +15,13 @@ from eval import evaluate, cal_train_metrics, suppression
 
 warnings.simplefilter("ignore")
 
+import os
+#os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+#os.environ["CUDA_LAUNCH_BLOCKING"] = "1"
+import torch
+
+
+
 
 
 def eval_freq_schedule(args, epoch: int):
@@ -29,7 +36,7 @@ def set_environment(args, tlogger):
     
     print("Setting Environment...")
 
-    args.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    args.device = torch.device("cuda:1" if torch.cuda.is_available() else "cpu")
     
     ### = = = =  Dataset and Data Loader = = = =  
     tlogger.print("Building Dataloader....")
@@ -258,8 +265,8 @@ def main(args, tlogger):
     best_acc = 0.0
     best_eval_name = "null"
 
-    if args.use_wandb:
-        wandb.init(entity=args.wandb_entity,
+    if True:
+        wandb.init(
                    project=args.project_name,
                    name=args.exp_name,
                    config=args)
