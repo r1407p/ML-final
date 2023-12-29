@@ -16,9 +16,9 @@ wdecay: 0.0003
 max_epochs: 80
 warmup_batchs: 1500
 use_amp: True
-use_fpn: True
+use_fpn: False
 fpn_size: 1536
-use_selection: True
+use_selection: True 
 num_classes: 200
 num_selects: 
   layer1: 256
