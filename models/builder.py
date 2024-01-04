@@ -267,7 +267,7 @@ def build_swintransformer(pretrained: bool = True,
                                    use_selection = use_selection,
                                    num_classes = num_classes,
                                    num_selects = num_selects, 
-                                   use_combiner = num_selects,
+                                   use_combiner = use_combiner,
                                    comb_proj_size = comb_proj_size)
 
 

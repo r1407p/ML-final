@@ -170,22 +170,24 @@ def _average_top_k_result(corrects: dict, total_samples: dict, scores: list, lab
 
     max_scores = torch.max(scores_t, dim=-1)[0]
     # sorted_ids = torch.sort(max_scores, dim=-1, descending=True)[1] # this id represents different layers outputs, not samples
-
     for b in range(batch_size):
         tmp_logit = None
         ids = torch.sort(max_scores[b], dim=-1)[1] # S
+        
         for i in range(tops[-1]):
-            top_i_id = ids[i]
-            if tmp_logit is None:
-                tmp_logit = scores_t[b][top_i_id]
-            else:
-                tmp_logit += scores_t[b][top_i_id]
-            # record results
-            if i+1 in tops:
-                if torch.max(tmp_logit, dim=-1)[1] == labels[b]:
-                    eval_name = "highest-{}".format(i+1)
-                    corrects[eval_name] += 1
-
+            try:
+                top_i_id = ids[i]
+                if tmp_logit is None:
+                    tmp_logit = scores_t[b][top_i_id]
+                else:
+                    tmp_logit += scores_t[b][top_i_id]
+                # record results
+                if i+1 in tops:
+                    if torch.max(tmp_logit, dim=-1)[1] == labels[b]:
+                        eval_name = "highest-{}".format(i+1)
+                        corrects[eval_name] += 1
+            except:
+                continue
 
 def evaluate(args, model, test_loader):
     """
