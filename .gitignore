@@ -3,6 +3,7 @@
 wandb/*
 records/*
 weight/*
+*.pth
 
 
 
